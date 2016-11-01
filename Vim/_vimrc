@@ -1,0 +1,291 @@
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      if empty(&shellxquote)
+        let l:shxq_sav = ''
+        set shellxquote&
+      endif
+      let cmd = '"' . $VIMRUNTIME . '\diff"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+  if exists('l:shxq_sav')
+    let &shellxquote=l:shxq_sav
+  endif
+endfunction
+"tab 标签转换
+function! TabPos_ActivateBuffer(num)
+    let s:count = a:num
+    exe "tabfirst"
+    exe "tabnext" s:count
+endfunction
+       
+function! TabPos_Initialize()  
+for i in range(1, 9)
+        exe "map <M-" . i . "> :call TabPos_ActivateBuffer(" . i . ")<CR>"
+    endfor
+    exe "map <M-0> :call TabPos_ActivateBuffer(10)<CR>"
+    exe "map <M-`> :tabnew<CR>"
+endfunction
+ 
+autocmd VimEnter * call TabPos_Initialize()
+
+
+set shortmess=atI  
+set nu             
+set go=             
+set guifont=Consolas:h11:cANSI
+set gfw=:h12:cGB2312
+"set gfw=youyuan:h12:cGB2312
+"au GUIEnter * simalt ~x
+
+
+syntax on          
+autocmd InsertLeave * se nocul
+autocmd InsertEnter * se cul    
+set ruler          
+set showcmd        
+set cmdheight=1      
+set scrolloff=3     
+set novisualbell   
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+set laststatus=2  
+set foldenable
+set foldmethod=manual
+colorscheme molokai
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+"set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=utf-8
+set completeopt=preview,menu 
+filetype plugin on
+set autowrite
+set ruler                
+set cursorline            
+set guioptions-=T          
+set guioptions-=m          
+set foldcolumn=0
+set foldlevel=3 
+set noeb
+set confirm
+set autoindent
+set cindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set number
+set history=1000
+set nobackup
+set noswapfile
+set ignorecase
+set hlsearch
+set incsearch
+set gdefault
+set langmenu=us_EN.UTF-8
+set helplang=en
+filetype on
+filetype plugin on
+filetype indent on
+set viminfo+=!
+set iskeyword+=_,$,@,%,#,-
+set linespace=0
+set wildmenu
+set backspace=2
+set whichwrap+=<,>,h,l
+"set nowrap
+set selection=exclusive
+set report=0
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+set showmatch
+set matchtime=1
+set scrolloff=3
+set smartindent
+"au BufRead,BufNewFile *  setfiletype txt
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {<CR>}<ESC>O
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endfunction
+filetype plugin indent on 
+set completeopt=longest,menu
+let Tlist_Sort_Type = "name"    
+let Tlist_Use_Right_Window = 1 
+let Tlist_Compart_Format = 1  
+let Tlist_Exist_OnlyWindow = 1
+let Tlist_File_Fold_Auto_Close = 0  
+let Tlist_Enable_Fold_Column = 0   
+autocmd FileType java set tags+=D:\tools\java\tags  
+set tags=tags  
+let Tlist_Auto_Open=1 
+let Tlist_Show_One_File = 1 
+let Tlist_Exit_OnlyWindow = 1 
+let Tlist_Use_Right_Window = 1
+let b:javascript_fold = 1
+let javascript_enable_domhtmlcss = 1
+hi TabLine term=underline cterm=bold ctermfg=9 ctermbg=4
+hi TabLineSel term=bold cterm=bold ctermbg=red ctermfg=yellow
+highlight Pmenu ctermbg=darkred
+highlight PmenuSel ctermbg=red ctermfg=white
+set ffs=unix,dos,mac
+set ff=unix 
+set nobomb 
+set linebreak
+set formatoptions=tcoqmM
+
+let Tlist_Ctags_Cmd='C:\Windows\ctags.exe'
+"生成一个tags文件
+nmap <F7><Esc>:!ctags -R *<CR>
+
+let Tlist_Auto_Open=0
+
+let g:pydiction_location = 'C:\Vim\vim74\ftplugin\complete-dict'
+
+let g:pydiction_menu_height = 20
+
+"F12 python
+map <F12> :!"C:\Python27\python.exe" % <CR>
+"F11 ipython
+map <F11> :!"C:\Python27\Scripts\ipython.exe" % <CR>
+"F9 gcc
+map <F9>  :!"C:\MinGW\bin\gcc.exe" % -o %.exe && %.exe<CR>
+"F8 g++
+map <F8>  :!"C:\MinGW\bin\g++.exe" % -o %.exe && %.exe <CR>
+
+syntax enable
+
+
+"set foldmethod=syntax " 用语法高亮来定义折叠
+"set foldmethod=indent " 更多的缩进表示更高级别的折叠(这个似乎效果好一些)
+"设置taglists插件快捷键
+"nnoremap :TlistToggle
+let Tlist_Use_SingleClick=1
+let Tlist_File_Fold_Auto_Close=0
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_File_Fold_Auto_Close=1
+let Tlist_Show_Menu=1
+""""""""""""""""""""""""""""""
+" winManager setting
+""""""""""""""""""""""""""""""
+let g:winManagerWindowLayout = "FileExplorer|BufExplorer|TagList"
+let g:winManagerWidth = 30
+let g:defaultExplorer = 0
+map wm :WMToggle<cr>
+
+
+nmap <F10> :wa<cr>:TlistUpdate<cr>:FirstExplorerWindow<cr><F5><c-w>b
+"（千万不要把F5用快捷键映射覆盖了）
+"上述设置的作用：按F10,先保存所有编辑过的文件，然后刷新bufexplorer，然后在跳到fileexplorer并用F5刷新，最后跳回编辑页面。
+"那个fileexplorer的刷新函数是个局部函数（由F5调用），不能直接调用，我也不会改，于是就只好这样设置。
+
+
+""""""""""""""""""""""""""""""
+" netrw setting
+""""""""""""""""""""""""""""""
+let g:netrw_winsize = 30
+nmap fe :Sexplore
+
+"自动补全  
+filetype plugin indent on
+set completeopt=longest,menu
+"自动补全命令时候使用菜单式匹配列表  
+set wildmenu
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType java set omnifunc=javacomplete#Complet
+
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"自动缩进
+set autoindent
+"类似C语言风格的缩进
+set cindent
+"智能缩进:每一行都和前一行有相同的缩进量,
+"同时这种缩进形式能正确的识别出花括号,当遇到右花括号（}）,
+"则取消缩进形式。此外还增加了识别C语言关键字的功能。
+"如果一行是以#开头的(比如宏)，那么这种格式将会被特殊对待而不采用缩进格式
+set smartindent
+"For Python Programmers
+autocmd FileType python set textwidth=79 " PEP-8 Friendly
+
+"把输入的tab自动转换成空格，Python用户必用~
+set expandtab 
+"一个tab键占据4个空格
+set tabstop=4
+"一开始,插入的就是4个空格,此时一旦你再按下一次tab,这次的四个空格就会和上次的四个空格组合起来变成一个制表符
+set softtabstop=4
+"每一级自动缩进的空格数
+set shiftwidth=4
+"根据文件类型设定缩进,覆盖掉默认的~
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+
+
+
+
+"""""""""""""""""""""""""""""""  
+"" miniBufexplorer Config  
+"""""""""""""""""""""""""""""""  
+"let g:miniBufExplMapWindowNavArrows = 1  
+"let g:miniBufExplMapWindowNavVim = 1  
+"let g:miniBufExplMapCTabSwitchWindows = 1  
+"let g:miniBufExplModSelTarget = 1  
+""let g:miniBufExplForceSyntaxEnable = 1  
+""let g:miniBufExplorerMoreThanOne=2  
+"let g:miniBufExplorerMoreThanOne=0
+"
+"let g:bufExplorerMaxHeight=3
+"解决windows乱码
+set encoding=utf-8
+set fileencodings=utf-8,chinese,latin-1
+if has("win32")
+    set fileencoding=chinese
+    let $VIMFILES = $VIM.'/vimfiles'
+    let $V = $VIM.'/_vimrc'
+else
+    let $VIMFILES = $HOME.'/.vim'
+    let $V = $HOME.'/.vimrc'
+    set fileencoding=utf-8
+endif
+
+"解决菜单乱码
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+"解决consle输出乱码
+language messages zh_CN.utf-8
+"持续撤销
+set undofile
+set undodir=$VIMFILES/\_undodir
+set undolevels=1000 "maximum number of changes that can be undone

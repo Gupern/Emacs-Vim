@@ -59,6 +59,7 @@ set gfw=:h12:cGB2312
 
 
 syntax on          
+set nocp
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul    
 set ruler          
@@ -77,7 +78,7 @@ set termencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 set completeopt=preview,menu 
-filetype plugin on
+filetype plugin indent on
 set autowrite
 set ruler                
 set cursorline            
@@ -163,7 +164,9 @@ set formatoptions=tcoqmM
 
 let Tlist_Ctags_Cmd='C:\Windows\ctags.exe'
 "生成一个tags文件
-nmap <F7><Esc>:!ctags -R *<CR>
+"nmap <F7><Esc>:!ctags -R *<CR>
+nmap <F7> :!ctags -R *<CR>
+
 
 let Tlist_Auto_Open=0
 
@@ -172,9 +175,9 @@ let g:pydiction_location = 'C:\Vim\vim74\ftplugin\complete-dict'
 let g:pydiction_menu_height = 20
 
 "F12 python
-map <F12> :!"C:\Python27\python.exe" % <CR>
+map <F12> :!"C:\Python35\python.exe" % <CR>
 "F11 ipython
-map <F11> :!"C:\Python27\Scripts\ipython.exe" % <CR>
+map <F11> :!"C:\Python35\Scripts\ipython.exe" % <CR>
 "F9 gcc
 map <F9>  :!"C:\MinGW\bin\gcc.exe" % -o %.exe && %.exe<CR>
 "F8 g++
@@ -289,3 +292,37 @@ language messages zh_CN.utf-8
 set undofile
 set undodir=$VIMFILES/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
+
+
+"自动补全
+let g:SuperTabRetainCompletionType = 1
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+
+let g:table_mode_corner=" |"
+
+"====open file in chrome browser====
+nnoremap <F2> :!cmd /c c:\Python35\python c:\Python35\scripts\markdown2.py %:t  > %:r.html<CR> 
+noremap \e  :!cmd /c start ./%:r.html<CR>
+let g:mkdp_path_to_chrome = "firefox"
+    " 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+
+    let g:mkdp_auto_start = 0
+    " 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开
+    " markdown 文件的时候打开一次
+
+    let g:mkdp_auto_open = 0
+    " 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预
+    " 览窗口
+
+    let g:mkdp_auto_close = 1
+    " 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不
+    " 自动关闭预览窗口
+
+    let g:mkdp_refresh_slow = 0
+    " 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
+    " 更新预览
+
+    let g:mkdp_command_for_global = 0
+    " 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown
+    " 文件可以使用改命令

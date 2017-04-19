@@ -31,7 +31,7 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
-"tab ±êÇ©×ª»»
+"tab æ ‡ç­¾è½¬æ¢
 function! TabPos_ActivateBuffer(num)
     let s:count = a:num
     exe "tabfirst"
@@ -125,7 +125,7 @@ set smartindent
 "au BufRead,BufNewFile *  setfiletype txt
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
+:inoremap { {}<ESC>i
 :inoremap } <c-r>=ClosePair('}')<CR>
 :inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePair(']')<CR>
@@ -163,7 +163,7 @@ set linebreak
 set formatoptions=tcoqmM
 
 let Tlist_Ctags_Cmd='C:\Windows\ctags.exe'
-"Éú³ÉÒ»¸ötagsÎÄ¼ş
+"ç”Ÿæˆä¸€ä¸ªtagsæ–‡ä»¶
 "nmap <F7><Esc>:!ctags -R *<CR>
 nmap <F7> :!ctags -R *<CR>
 
@@ -186,9 +186,9 @@ map <F8>  :!"C:\MinGW\bin\g++.exe" % -o %.exe && %.exe <CR>
 syntax enable
 
 
-"set foldmethod=syntax " ÓÃÓï·¨¸ßÁÁÀ´¶¨ÒåÕÛµş
-"set foldmethod=indent " ¸ü¶àµÄËõ½ø±íÊ¾¸ü¸ß¼¶±ğµÄÕÛµş(Õâ¸öËÆºõĞ§¹ûºÃÒ»Ğ©)
-"ÉèÖÃtaglists²å¼ş¿ì½İ¼ü
+"set foldmethod=syntax " ç”¨è¯­æ³•é«˜äº®æ¥å®šä¹‰æŠ˜å 
+"set foldmethod=indent " æ›´å¤šçš„ç¼©è¿›è¡¨ç¤ºæ›´é«˜çº§åˆ«çš„æŠ˜å (è¿™ä¸ªä¼¼ä¹æ•ˆæœå¥½ä¸€äº›)
+"è®¾ç½®taglistsæ’ä»¶å¿«æ·é”®
 "nnoremap :TlistToggle
 let Tlist_Use_SingleClick=1
 let Tlist_File_Fold_Auto_Close=0
@@ -206,9 +206,9 @@ map wm :WMToggle<cr>
 
 
 nmap <F10> :wa<cr>:TlistUpdate<cr>:FirstExplorerWindow<cr><F5><c-w>b
-"£¨Ç§Íò²»Òª°ÑF5ÓÃ¿ì½İ¼üÓ³Éä¸²¸ÇÁË£©
-"ÉÏÊöÉèÖÃµÄ×÷ÓÃ£º°´F10,ÏÈ±£´æËùÓĞ±à¼­¹ıµÄÎÄ¼ş£¬È»ºóË¢ĞÂbufexplorer£¬È»ºóÔÚÌøµ½fileexplorer²¢ÓÃF5Ë¢ĞÂ£¬×îºóÌø»Ø±à¼­Ò³Ãæ¡£
-"ÄÇ¸öfileexplorerµÄË¢ĞÂº¯ÊıÊÇ¸ö¾Ö²¿º¯Êı£¨ÓÉF5µ÷ÓÃ£©£¬²»ÄÜÖ±½Óµ÷ÓÃ£¬ÎÒÒ²²»»á¸Ä£¬ÓÚÊÇ¾ÍÖ»ºÃÕâÑùÉèÖÃ¡£
+"ï¼ˆåƒä¸‡ä¸è¦æŠŠF5ç”¨å¿«æ·é”®æ˜ å°„è¦†ç›–äº†ï¼‰
+"ä¸Šè¿°è®¾ç½®çš„ä½œç”¨ï¼šæŒ‰F10,å…ˆä¿å­˜æ‰€æœ‰ç¼–è¾‘è¿‡çš„æ–‡ä»¶ï¼Œç„¶ååˆ·æ–°bufexplorerï¼Œç„¶ååœ¨è·³åˆ°fileexplorerå¹¶ç”¨F5åˆ·æ–°ï¼Œæœ€åè·³å›ç¼–è¾‘é¡µé¢ã€‚
+"é‚£ä¸ªfileexplorerçš„åˆ·æ–°å‡½æ•°æ˜¯ä¸ªå±€éƒ¨å‡½æ•°ï¼ˆç”±F5è°ƒç”¨ï¼‰ï¼Œä¸èƒ½ç›´æ¥è°ƒç”¨ï¼Œæˆ‘ä¹Ÿä¸ä¼šæ”¹ï¼Œäºæ˜¯å°±åªå¥½è¿™æ ·è®¾ç½®ã€‚
 
 
 """"""""""""""""""""""""""""""
@@ -217,10 +217,10 @@ nmap <F10> :wa<cr>:TlistUpdate<cr>:FirstExplorerWindow<cr><F5><c-w>b
 let g:netrw_winsize = 30
 nmap fe :Sexplore
 
-"×Ô¶¯²¹È«  
+"è‡ªåŠ¨è¡¥å…¨  
 filetype plugin indent on
 set completeopt=longest,menu
-"×Ô¶¯²¹È«ÃüÁîÊ±ºòÊ¹ÓÃ²Ëµ¥Ê½Æ¥ÅäÁĞ±í  
+"è‡ªåŠ¨è¡¥å…¨å‘½ä»¤æ—¶å€™ä½¿ç”¨èœå•å¼åŒ¹é…åˆ—è¡¨  
 set wildmenu
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -232,27 +232,27 @@ autocmd FileType java set omnifunc=javacomplete#Complet
 
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-"×Ô¶¯Ëõ½ø
+"è‡ªåŠ¨ç¼©è¿›
 set autoindent
-"ÀàËÆCÓïÑÔ·ç¸ñµÄËõ½ø
+"ç±»ä¼¼Cè¯­è¨€é£æ ¼çš„ç¼©è¿›
 set cindent
-"ÖÇÄÜËõ½ø:Ã¿Ò»ĞĞ¶¼ºÍÇ°Ò»ĞĞÓĞÏàÍ¬µÄËõ½øÁ¿,
-"Í¬Ê±ÕâÖÖËõ½øĞÎÊ½ÄÜÕıÈ·µÄÊ¶±ğ³ö»¨À¨ºÅ,µ±Óöµ½ÓÒ»¨À¨ºÅ£¨}£©,
-"ÔòÈ¡ÏûËõ½øĞÎÊ½¡£´ËÍâ»¹Ôö¼ÓÁËÊ¶±ğCÓïÑÔ¹Ø¼ü×ÖµÄ¹¦ÄÜ¡£
-"Èç¹ûÒ»ĞĞÊÇÒÔ#¿ªÍ·µÄ(±ÈÈçºê)£¬ÄÇÃ´ÕâÖÖ¸ñÊ½½«»á±»ÌØÊâ¶Ô´ı¶ø²»²ÉÓÃËõ½ø¸ñÊ½
+"æ™ºèƒ½ç¼©è¿›:æ¯ä¸€è¡Œéƒ½å’Œå‰ä¸€è¡Œæœ‰ç›¸åŒçš„ç¼©è¿›é‡,
+"åŒæ—¶è¿™ç§ç¼©è¿›å½¢å¼èƒ½æ­£ç¡®çš„è¯†åˆ«å‡ºèŠ±æ‹¬å·,å½“é‡åˆ°å³èŠ±æ‹¬å·ï¼ˆ}ï¼‰,
+"åˆ™å–æ¶ˆç¼©è¿›å½¢å¼ã€‚æ­¤å¤–è¿˜å¢åŠ äº†è¯†åˆ«Cè¯­è¨€å…³é”®å­—çš„åŠŸèƒ½ã€‚
+"å¦‚æœä¸€è¡Œæ˜¯ä»¥#å¼€å¤´çš„(æ¯”å¦‚å®)ï¼Œé‚£ä¹ˆè¿™ç§æ ¼å¼å°†ä¼šè¢«ç‰¹æ®Šå¯¹å¾…è€Œä¸é‡‡ç”¨ç¼©è¿›æ ¼å¼
 set smartindent
 "For Python Programmers
 autocmd FileType python set textwidth=79 " PEP-8 Friendly
 
-"°ÑÊäÈëµÄtab×Ô¶¯×ª»»³É¿Õ¸ñ£¬PythonÓÃ»§±ØÓÃ~
+"æŠŠè¾“å…¥çš„tabè‡ªåŠ¨è½¬æ¢æˆç©ºæ ¼ï¼ŒPythonç”¨æˆ·å¿…ç”¨~
 set expandtab 
-"Ò»¸ötab¼üÕ¼¾İ4¸ö¿Õ¸ñ
+"ä¸€ä¸ªtabé”®å æ®4ä¸ªç©ºæ ¼
 set tabstop=4
-"Ò»¿ªÊ¼,²åÈëµÄ¾ÍÊÇ4¸ö¿Õ¸ñ,´ËÊ±Ò»µ©ÄãÔÙ°´ÏÂÒ»´Îtab,Õâ´ÎµÄËÄ¸ö¿Õ¸ñ¾Í»áºÍÉÏ´ÎµÄËÄ¸ö¿Õ¸ñ×éºÏÆğÀ´±ä³ÉÒ»¸öÖÆ±í·û
+"ä¸€å¼€å§‹,æ’å…¥çš„å°±æ˜¯4ä¸ªç©ºæ ¼,æ­¤æ—¶ä¸€æ—¦ä½ å†æŒ‰ä¸‹ä¸€æ¬¡tab,è¿™æ¬¡çš„å››ä¸ªç©ºæ ¼å°±ä¼šå’Œä¸Šæ¬¡çš„å››ä¸ªç©ºæ ¼ç»„åˆèµ·æ¥å˜æˆä¸€ä¸ªåˆ¶è¡¨ç¬¦
 set softtabstop=4
-"Ã¿Ò»¼¶×Ô¶¯Ëõ½øµÄ¿Õ¸ñÊı
+"æ¯ä¸€çº§è‡ªåŠ¨ç¼©è¿›çš„ç©ºæ ¼æ•°
 set shiftwidth=4
-"¸ù¾İÎÄ¼şÀàĞÍÉè¶¨Ëõ½ø,¸²¸ÇµôÄ¬ÈÏµÄ~
+"æ ¹æ®æ–‡ä»¶ç±»å‹è®¾å®šç¼©è¿›,è¦†ç›–æ‰é»˜è®¤çš„~
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
 
@@ -270,7 +270,7 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=
 "let g:miniBufExplorerMoreThanOne=0
 "
 "let g:bufExplorerMaxHeight=3
-"½â¾öwindowsÂÒÂë
+"è§£å†³windowsä¹±ç 
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
 if has("win32")
@@ -283,18 +283,18 @@ else
     set fileencoding=utf-8
 endif
 
-"½â¾ö²Ëµ¥ÂÒÂë
+"è§£å†³èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-"½â¾öconsleÊä³öÂÒÂë
+"è§£å†³consleè¾“å‡ºä¹±ç 
 language messages zh_CN.utf-8
-"³ÖĞø³·Ïú
+"æŒç»­æ’¤é”€
 set undofile
 set undodir=$VIMFILES/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
 
 
-"×Ô¶¯²¹È«
+"è‡ªåŠ¨è¡¥å…¨
 let g:SuperTabRetainCompletionType = 1
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
@@ -305,24 +305,24 @@ let g:table_mode_corner=" |"
 nnoremap <F2> :!cmd /c c:\Python35\python c:\Python35\scripts\markdown2.py %:t  > %:r.html<CR> 
 noremap \e  :!cmd /c start ./%:r.html<CR>
 let g:mkdp_path_to_chrome = "firefox"
-    " ÉèÖÃ chrome ä¯ÀÀÆ÷µÄÂ·¾¶£¨»òÊÇÆô¶¯ chrome£¨»òÆäËûÏÖ´úä¯ÀÀÆ÷£©µÄÃüÁî£©
+    " è®¾ç½® chrome æµè§ˆå™¨çš„è·¯å¾„ï¼ˆæˆ–æ˜¯å¯åŠ¨ chromeï¼ˆæˆ–å…¶ä»–ç°ä»£æµè§ˆå™¨ï¼‰çš„å‘½ä»¤ï¼‰
 
     let g:mkdp_auto_start = 0
-    " ÉèÖÃÎª 1 ¿ÉÒÔÔÚ´ò¿ª markdown ÎÄ¼şµÄÊ±ºò×Ô¶¯´ò¿ªä¯ÀÀÆ÷Ô¤ÀÀ£¬Ö»ÔÚ´ò¿ª
-    " markdown ÎÄ¼şµÄÊ±ºò´ò¿ªÒ»´Î
+    " è®¾ç½®ä¸º 1 å¯ä»¥åœ¨æ‰“å¼€ markdown æ–‡ä»¶çš„æ—¶å€™è‡ªåŠ¨æ‰“å¼€æµè§ˆå™¨é¢„è§ˆï¼Œåªåœ¨æ‰“å¼€
+    " markdown æ–‡ä»¶çš„æ—¶å€™æ‰“å¼€ä¸€æ¬¡
 
     let g:mkdp_auto_open = 0
-    " ÉèÖÃÎª 1 ÔÚ±à¼­ markdown µÄÊ±ºò¼ì²éÔ¤ÀÀ´°¿ÚÊÇ·ñÒÑ¾­´ò¿ª£¬·ñÔò×Ô¶¯´ò¿ªÔ¤
-    " ÀÀ´°¿Ú
+    " è®¾ç½®ä¸º 1 åœ¨ç¼–è¾‘ markdown çš„æ—¶å€™æ£€æŸ¥é¢„è§ˆçª—å£æ˜¯å¦å·²ç»æ‰“å¼€ï¼Œå¦åˆ™è‡ªåŠ¨æ‰“å¼€é¢„
+    " è§ˆçª—å£
 
     let g:mkdp_auto_close = 1
-    " ÔÚÇĞ»» buffer µÄÊ±ºò×Ô¶¯¹Ø±ÕÔ¤ÀÀ´°¿Ú£¬ÉèÖÃÎª 0 ÔòÔÚÇĞ»» buffer µÄÊ±ºò²»
-    " ×Ô¶¯¹Ø±ÕÔ¤ÀÀ´°¿Ú
+    " åœ¨åˆ‡æ¢ buffer çš„æ—¶å€™è‡ªåŠ¨å…³é—­é¢„è§ˆçª—å£ï¼Œè®¾ç½®ä¸º 0 åˆ™åœ¨åˆ‡æ¢ buffer çš„æ—¶å€™ä¸
+    " è‡ªåŠ¨å…³é—­é¢„è§ˆçª—å£
 
     let g:mkdp_refresh_slow = 0
-    " ÉèÖÃÎª 1 ÔòÖ»ÓĞÔÚ±£´æÎÄ¼ş£¬»òÍË³ö²åÈëÄ£Ê½µÄÊ±ºò¸üĞÂÔ¤ÀÀ£¬Ä¬ÈÏÎª 0£¬ÊµÊ±
-    " ¸üĞÂÔ¤ÀÀ
+    " è®¾ç½®ä¸º 1 åˆ™åªæœ‰åœ¨ä¿å­˜æ–‡ä»¶ï¼Œæˆ–é€€å‡ºæ’å…¥æ¨¡å¼çš„æ—¶å€™æ›´æ–°é¢„è§ˆï¼Œé»˜è®¤ä¸º 0ï¼Œå®æ—¶
+    " æ›´æ–°é¢„è§ˆ
 
     let g:mkdp_command_for_global = 0
-    " ÉèÖÃÎª 1 ÔòËùÓĞÎÄ¼ş¶¼¿ÉÒÔÊ¹ÓÃ MarkdownPreview ½øĞĞÔ¤ÀÀ£¬Ä¬ÈÏÖ»ÓĞ markdown
-    " ÎÄ¼ş¿ÉÒÔÊ¹ÓÃ¸ÄÃüÁî
+    " è®¾ç½®ä¸º 1 åˆ™æ‰€æœ‰æ–‡ä»¶éƒ½å¯ä»¥ä½¿ç”¨ MarkdownPreview è¿›è¡Œé¢„è§ˆï¼Œé»˜è®¤åªæœ‰ markdown
+    " æ–‡ä»¶å¯ä»¥ä½¿ç”¨æ”¹å‘½ä»¤

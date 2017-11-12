@@ -283,7 +283,7 @@ endif
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 "解决consle输出乱码
-language messages zh_CN.utf-8
+"language messages zh_CN.utf-8
 "持续撤销
 set undofile
 set undodir=$VIMFILES/\_undodir
